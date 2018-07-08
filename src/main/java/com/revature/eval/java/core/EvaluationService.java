@@ -4,6 +4,7 @@ import java.time.temporal.Temporal;
 import java.util.List;
 import java.util.Map;
 import java.lang.*;
+import java.util.*; // for number 4 
 
 public class EvaluationService {
 
@@ -91,18 +92,18 @@ public class EvaluationService {
 		}
 
 		public boolean isEquilateral() {
-			// TODO Write an implementation for this method declaration
-			return false;
+			return (this.sideOne == this.sideTwo && this.sideOne == this.sideThree && this.sideTwo == this.sideThree);
 		}
 
 		public boolean isIsosceles() {
-			// TODO Write an implementation for this method declaration
-			return false;
+			
+			return ( (this.sideOne == this.sideTwo && this.sideOne != this.sideThree) || (this.sideOne == this.sideThree && this.sideOne != this.sideTwo) || this.sideTwo == this.sideThree && this.sideTwo != this.sideThree);
+			// if two sides equal eachother, then we just need to check if one of those sides is not equal to the other side
 		}
 
 		public boolean isScalene() {
-			// TODO Write an implementation for this method declaration
-			return false;
+			
+			return !(isIsosceles() || isEquilateral()); // if it isn't Isosceles or equilateral, then it must be scalene
 		}
 
 	}
@@ -110,8 +111,8 @@ public class EvaluationService {
 	/**
 	 * 4. Given a word, compute the scrabble score for that word.
 	 * 
-	 * --Letter Values-- Letter Value A, E, I, O, U, L, N, R, S, T = 1; D, G = 2; B,
-	 * C, M, P = 3; F, H, V, W, Y = 4; K = 5; J, X = 8; Q, Z = 10; Examples
+	 * --Letter Values-- Letter Value { A, E, I, O, U, L, N, R, S, T} = 1; {D, G } = 2; { B,
+	 * C, M, P } = 3; { F, H, V, W, Y } = 4; { K } = 5; { J, X } = 8; { Q, Z } = 10; Examples
 	 * "cabbage" should be scored as worth 14 points:
 	 * 
 	 * 3 points for C, 1 point for A, twice 3 points for B, twice 2 points for G, 1
@@ -122,9 +123,68 @@ public class EvaluationService {
 	 * @param string
 	 * @return
 	 */
-	public int getScrabbleScore(String string) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+	public <K, V>int getScrabbleScore(String string) {
+		Hashtable Alpha = new Hashtable(); // hashsets for the letters with particular scores
+		
+		for(int i = 0; i < 26; i++) { // initialize hastable with corresponding scores
+			char character = (char)(65 + i);
+			switch (character) {
+				case 'A': 
+				case 'E': 
+				case 'I':
+				case 'O':
+				case 'U': 
+				case 'L':
+				case 'N': 
+				case 'R': 
+				case 'S':
+				case 'T': {
+					Alpha.put(character, 1);
+					continue;
+				}
+				case 'D':
+				case 'G': {
+					Alpha.put(character, 2);
+					continue;
+				}
+				case 'B':
+				case 'C':
+				case 'M':
+				case 'P': {
+					Alpha.put(character, 3);
+					continue;
+				}
+				case 'F':
+				case 'H':
+				case 'V':
+				case 'W':
+				case 'Y': {
+					Alpha.put(character, 4);
+					continue;
+				}
+				case 'K': {
+					Alpha.put(character, 5);
+					continue;
+				}
+				case 'J': 
+				case 'X': {
+					Alpha.put(character, 8);
+					continue;
+				}
+				case 'Q':
+				case 'Z': {
+					Alpha.put(character, 10);
+					continue;
+				}
+			}
+
+		}
+		int sum = 0;
+		for(int i = 0; i < string.length(); i++) {
+			sum += (int)Alpha.get(Character.toUpperCase(string.charAt(i)));
+		}
+
+		return sum;
 	}
 
 	/**
