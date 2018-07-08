@@ -1,0 +1,30 @@
+{
+    "run": {
+        "default": "",
+        "items": [
+            {
+                "name": "core",
+                "projectName": "core",
+                "workingDirectory": "c:\\Users\\timot\\Desktop\\Revature\\assignments\\java-workbook-TimHarrell",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    },
+    "debug": {
+        "default": "",
+        "items": [
+            {
+                "name": "core",
+                "projectName": "core",
+                "workingDirectory": "c:\\Users\\timot\\Desktop\\Revature\\assignments\\java-workbook-TimHarrell",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    }
+}

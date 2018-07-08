@@ -3,6 +3,7 @@ package com.revature.eval.java.core;
 import java.time.temporal.Temporal;
 import java.util.List;
 import java.util.Map;
+import java.lang.*;
 
 public class EvaluationService {
 
@@ -30,8 +31,14 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String acronym(String phrase) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		StringBuilder out = new StringBuilder();
+		out.append(phrase.charAt(0));
+		for(int i = 0; i < phrase.length() - 1; i++) {
+			if(phrase.charAt(i) == ' ' || phrase.charAt(i) == '-') { // what if space or - is last line
+				out.append(Character.toUpperCase(phrase.charAt(i +1)));
+			} 
+		}
+		return out.toString();
 	}
 
 	/**
