@@ -218,9 +218,20 @@ public class EvaluationService {
 	 * Note: As this exercise only deals with telephone numbers used in
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
-	public String cleanPhoneNumber(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+	public String cleanPhoneNumber(String string) { 
+		StringBuffer str = new StringBuffer();
+		
+			
+
+			for(int i = 0; i < string.length(); i++) {
+				if( 47 < string.charAt(i) && string.charAt(i) < 58 ) {
+					str.append(string.charAt(i));
+				}
+			}
+		
+			if(string.length() != 10) { throw new IllegalArgumentException();}
+		
+		return str.toString();
 	}
 
 	/**
@@ -233,8 +244,34 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Map<String, Integer> wordCount(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		Map<String, Integer> wc = new HashMap<>();
+		ArrayList<String> rac = new ArrayList<>();
+		StringBuffer word = new StringBuffer();
+		for(int i = 0; i < string.length(); i++) {
+			if(Character.isLetter(string.charAt(i))) {
+				word.append(string.charAt(i));
+			}
+			else if(word.length() > 0){
+				System.out.println(word.toString());
+				rac.add(word.toString());
+				
+				word.delete(0, word.length());
+			}
+		}
+		
+		System.out.println(word.toString());
+		rac.add(word.toString());
+		
+		for(int i = 0; i < rac.size(); i++) {
+			if(wc.containsKey(rac.get(i))) {
+				int j = wc.get(rac.get(i));
+				wc.replace(rac.get(i), ++j);
+			}
+			else {
+				wc.put(rac.get(i), 1);
+			}
+		}
+		return wc;
 	}
 
 	/**
