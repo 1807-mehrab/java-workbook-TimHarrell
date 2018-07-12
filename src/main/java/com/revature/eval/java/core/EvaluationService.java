@@ -1,5 +1,4 @@
 package com.revature.eval.java.core;
-
 import java.time.temporal.Temporal;
 import java.util.List;
 import java.util.Map;
@@ -311,11 +310,41 @@ public class EvaluationService {
 	 */
 	static class BinarySearch<T> {
 		private List<T> sortedList;
-
+		private int indexTracker = 0;
+		
 		public int indexOf(T t) {
-			// TODO Write an implementation for this method declaration
-			return 0;
+			int ref;
+			int number;
+			int middle = sortedList.size()/2;
+			T reference = sortedList.get(middle);
+			
+				ref = (Integer)reference;
+				number = (Integer)t;
+			
+			
+			
+			
+			
+			
+			return indexOfHelper(ref, number, middle);
+			
 		}
+		
+		private int indexOfHelper(int refer, int numb, int middle) {
+			
+				refer = (Integer)sortedList.get(middle);
+				if(refer == numb) {
+					return middle;
+				} else if(refer < numb) {
+					middle = (sortedList.size() + middle)/2;
+					return indexOfHelper(refer, numb, middle);
+				} else if(refer > numb) {
+					middle = (middle / 2);
+					return indexOfHelper(refer, numb, middle);
+				}
+			return -1;
+		}
+		
 
 		public BinarySearch(List<T> sortedList) {
 			super();
@@ -350,7 +379,7 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String toPigLatin(String string) {
-		// TODO Write an implementation for this method declaration
+		
 		return null;
 	}
 
