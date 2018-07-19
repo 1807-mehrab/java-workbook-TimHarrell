@@ -399,7 +399,15 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isArmstrongNumber(int input) {
-		// TODO Write an implementation for this method declaration
+		String num = ((Integer)input).toString();
+		int newNum = 0;
+
+		for(int i = num.length()-1; i >= 0; i--) {
+			int digit = (int)(num.charAt(i)) - 48;
+			int power = num.length();
+			newNum += Math.pow(digit, power);
+		}
+		if(newNum == input) return true;
 		return false;
 	}
 
@@ -414,7 +422,9 @@ public class EvaluationService {
 	 * @return
 	 */
 	public List<Long> calculatePrimeFactorsOf(long l) {
-		// TODO Write an implementation for this method declaration
+		ArrayList<Long> primes = new ArrayList<>();
+		
+		
 		return null;
 	}
 
@@ -453,7 +463,10 @@ public class EvaluationService {
 		}
 
 		public String rotate(String string) {
-			// TODO Write an implementation for this method declaration
+			StringBuffer a = new StringBuffer();
+			for(int i = 0; i < string.length(); i++) {
+				a.append((string.charAt(i) + key) % 26);
+			}
 			return null;
 		}
 
